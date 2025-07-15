@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel - Credit Karma Repair</title>
+  <script type="module" src="./firebase-functions.js"></script>
+  <script>
+    async function updateScore() {
+      const uid = document.getElementById("uid").value;
+      const score = parseInt(document.getElementById("score").value);
+      const { updateCreditScore } = await import('./firebase-functions.js');
+      updateCreditScore(uid, score);
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-6">
+  <h1 class="text-3xl font-bold mb-4">Admin Dashboard</h1>
+  <div class="bg-white dark:bg-gray-800 p-6 rounded shadow max-w-md mx-auto">
+    <label class="block mb-2">User UID</label>
+    <input id="uid" class="w-full p-2 border rounded mb-4" placeholder="Enter UID">
+    <label class="block mb-2">New Credit Score</label>
+    <input id="score" class="w-full p-2 border rounded mb-4" type="number" placeholder="e.g. 720">
+    <button onclick="updateScore()" class="w-full bg-green-600 text-white py-2 rounded">Update Score</button>
+  </div>
+</body>
+</html>
